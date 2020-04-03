@@ -213,22 +213,34 @@ namespace ConsoleApp4
                         switch (itemType)
                         {
                             case "Product":
-                                
+                                Trace.WriteLine("Вызов конструктора метода Product");
                                 g[arrayIdx++] = new Product(itemName, itemPrice, Convert.ToDateTime(chunks[3], cultures), Convert.ToDateTime(chunks[4], cultures));
-                             
-                               
+                                XmlSerializer serializerProduct = new XmlSerializer(typeof(Product));
+                                using (StreamWriter sw = new StreamWriter("objects.xml", true, System.Text.Encoding.Default))
+                                {
+                                    serializerProduct.Serialize(sw, g[arrayIdx - 1]);
+                                    sw.WriteLine("\n");
+                                }
                                 break;
                             case "Consignment":
-                                
+                                Trace.WriteLine("Вызов конструктора метода Consignment");
                                 g[arrayIdx++] = new Consignment(itemName, itemPrice, Int32.Parse(chunks[3]), Convert.ToDateTime(chunks[4], cultures), Convert.ToDateTime(chunks[5], cultures));
-                               
-                               
+                                XmlSerializer serializerConsignment = new XmlSerializer(typeof(Consignment));
+                                using (StreamWriter sw = new StreamWriter("objects.xml", true, System.Text.Encoding.Default))
+                                {
+                                    serializerConsignment.Serialize(sw, g[arrayIdx - 1]);
+                                    sw.WriteLine("\n");
+                                }
                                 break;
                             case "Set":
-                               
+                                Trace.WriteLine("Вызов конструктора метода Set");
                                 g[arrayIdx++] = new Set(itemName, itemPrice, chunks[3]);
-                                
-                   
+                                XmlSerializer serializerSet = new XmlSerializer(typeof(Set));
+                                using (StreamWriter sw = new StreamWriter("objects.xml", true, System.Text.Encoding.Default))
+                                {
+                                    serializerSet.Serialize(sw, g[arrayIdx - 1]);
+                                    sw.WriteLine("\n");
+                                }
                                 break;
 
                         }
